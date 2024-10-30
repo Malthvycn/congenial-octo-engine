@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MasterMix Calculator</title>
+</head>
+<body>
+  <h2>RNA Dilution Calculator</h2>
+
+  <!-- RNA Concentration Input -->
+  <label for="concentration">Enter RNA concentration (ng/µl):</label>
+  <input type="number" id="concentration" onchange="calculateAmounts()">
+
+  <!-- Adjustable Nanogram Factor Input -->
+  <label for="factor">Enter desired nanogram factor (default is 500):</label>
+  <input type="number" id="factor" value="500" onchange="calculateAmounts()">
+
+  <h3>Results</h3>
+  <p>RNA to add: <span id="rnaAmount">0</span> µl</p>
+  <p>RNase-free water to add: <span id="waterAmount">0</span> µl</p>
+
+  <script>
+    function calculateAmounts() {
+      const concentration = document.getElementById('concentration').value;
+      const factor = document.getElementById('factor').value;
+
+      const rnaAmount = factor / concentration;
+      const waterAmount = 11 - rnaAmount;
+
+      document.getElementById('rnaAmount').textContent = rnaAmount.toFixed(2);
+      document.getElementById('waterAmount').textContent = waterAmount.toFixed(2);
+    }
+  </script>
+</body>
+</html>
